@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+        <!-- Start top-section Area -->
+        <section class="top-section-area section-gap">
+            <div class="container">
+                <div class="row justify-content-center ">
+                    <div class="col-lg-6" style="border:2px solid #eee; padding:20px; background:#fff">
+                        {% if user.is_authenticated %}
+                        <h3>Çoktan giriş yaptınız.</h3>
+                        {% else %}
+                        {% if form.errors %}
+                          {% for key,value in form.errors.items %}
+                          <div class="alert alert-danger">
+                              {{ value }}
+                          </div>
+                          {% endfor %}
+                        {% endif %}
+      
+                        
+                        <h3 style="text-align:center">Giriş Yapın</h3>
+                        <p style="text-align:center; margin-top:20px; margin-bottom:20px">Yazılarınızı bizimle paylaşmak için bize katılın.</p>
+                        <form method="post">
+                          {% csrf_token %}
+                          <div class="mt-20">
+                            <input type="text" name="username" {% if form.username.errors %} style="border:1px solid red;" {% endif %} placeholder="Kullanıcı Adı" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Kullanıcı Adı'" required class="single-input">
+                          </div>
+                          <div class="mt-20">
+                              <input type="password" {% if form.password.errors %} style="border:1px solid red;" {% endif %} name="password" placeholder="Şifre" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Şifre'" required class="single-input" >
+                          </div>
+                          <div class="mt-20" style="text-align:center">
+                           <button type="submit" class="nw-btn primary-btn">Giriş Yap</button>
+                          </div>
+                        </form>
+                        <hr style="margin-top:30px; margin-bottom:30px">
+                        <a href="#" style="float:right" class="genric-btn success-border circle arrow">Kayıt Ol<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="#" style="float:left" class="genric-btn success-border circle arrow">Şifremi Unuttum</a>
+                        {% endif %}
+                      </div>
+                </div>
+            </div>  
+        </section>
+        <!-- End top-section Area -->
+
+
+<!-- Start post Area -->
+
+<!-- End post Area -->
+
+{% endblock %}

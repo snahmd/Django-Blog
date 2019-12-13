@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+        <!-- Start top-section Area -->
+        <section class="top-section-area section-gap">
+            <div class="container">
+                <div class="row justify-content-between align-items-center d-flex">
+                    <div class="col-lg-8 top-left">
+                        <h1 class="text-white mb-20">Yazı Ekle</h1>
+                        
+                    </div>
+                </div>
+            </div>  
+        </section>
+        <!-- End top-section Area -->
+
+
+<!-- Start post Area -->
+<div class="post-wrapper pt-100 pb-100">
+    <!-- Start post Area -->
+    <section class="post-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8" style="border:1px solid #eee; padding:20px ">
+                    <h3 class="mb-10">Yeni Yazı Ekleyin</h3>
+                 <!-- <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}-->
+
+
+                    <!--{{ form|crispy }}-->
+
+                    <!--
+                    <div class="form-group">
+                        <label for="sehir">Lütfen Etiket Giriniz</label>
+                        <input type="text" value="x, x ,x" data-role="tagesinput" class="form-control" />
+                    </div>
+                    -->
+
+                    {% crispy form %}
+                   
+                   
+                    <!--  <button type="submit" class="nw-btn primary-btn">Yazı Ekle</button>
+                  </form>-->
+                </div>
+            </div>
+        </div>    
+    </section>
+    <!-- End post Area -->  
+</div>
+<!-- End post Area -->
+
+{% endblock %}
+
+{% block css %}
+
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css'>
+
+<style>
+.tag {background: #62bdfc ; padding:5px 3px; }
+</style>
+
+{% endblock %}
+
+{% block js %}
+
+<script src='https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js'></script>
+
+{% endblock %}
