@@ -39,7 +39,7 @@ class Tag(models.Model):
 
 # Create your models here.
 class Post(models.Model):
-  user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
+  user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1, related_name="userposts")
   title = models.CharField(max_length=150)
   image = models.ImageField(upload_to='upload/', blank=True)
   content = models.TextField()
