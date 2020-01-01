@@ -21,9 +21,16 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as authViews
 from posts.views import register, HomeRedirectView, RegisterView 
 from django.views.generic import RedirectView
+from rest_framework import routers
+from posts.api.views import UserViewSet
+
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
     path('', include('posts.urls')),
     path('profile/', include('accounts.urls')),
     path('login/', authViews.LoginView.as_view(), name="login"),
@@ -32,6 +39,7 @@ urlpatterns = [
     path('password/change/', authViews.PasswordChangeView.as_view(template_name='registration/password-change.html'), name="password-change"),
     path('password/change/done', authViews.PasswordChangeDoneView.as_view(template_name='registration/password-change-done.html'), name="password_change_done"),
     path('go-to-home', HomeRedirectView.as_view(), name="go-home"),
+    path('api-auth/', include('rest_framework.urls'))
      
 
 
