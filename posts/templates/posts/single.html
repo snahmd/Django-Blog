@@ -136,6 +136,7 @@
                                             {% endif %}
                                         </div>
                                         {% endfor %}
+                                        <button  href="#" class="primary-btn load-more pbtn-2 text-uppercase mx-auto mt-60">Daha fazla Yorum</button>
                                     </div>
                                                                                                                                                                                                     
                                 </div>
@@ -295,6 +296,45 @@
     </section>
     <!-- End post Area -->  
 </div>
-<!-- End post Area -->
+
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript">
+    $(".load-more").click( function(){
+        //click event start
+        console.log("butona tıklandı")
+        
+        $.ajax({
+            method : "GET",
+            url:"http://127.0.0.1:8000/api/posts/{{ single.id }}/"
+        }).done(function(data){
+            $(".comment-list").empty()
+            var comments = data.comments
+            $.each(comments, function(i,e){
+                let username = e.user.username
+                let content = e.content
+                let created = e.created
+
+                $(".comment-list").append('<div class="single-comment justify-content-between d-flex">'+
+                    '<div class="user justify-content-between d-flex">'+
+                        '<div class="thumb">'+
+                            '<img src="{% static "img/asset/c1.jpg" %}" alt="">'+
+                        '</div>'+
+                        '<div class="desc">'+
+                            '<h5><a href="#">/a>'+username+'</h5>'+
+                            '<p class="date">'+comment.created+'</p>'+
+                            '<p class="comment">'+content+
+                            '</p>'+
+                        '</div>'+
+                    '</div>'+     
+                '</div>')
+            });
+        });
+
+    });
+
+</script>
 
 {% endblock %}
